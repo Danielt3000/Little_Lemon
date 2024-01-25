@@ -1,5 +1,6 @@
 import React from "react";
 import Nav from "../Nav/Nav";
+import Footer from "../Footer/Footer";
 
 function Reservations() {
   return (
@@ -7,7 +8,7 @@ function Reservations() {
       <nav>
         <Nav />
       </nav>
-      Reservations
+      <Footer />
     </div>
   );
 }
