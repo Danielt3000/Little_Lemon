@@ -14,6 +14,7 @@ module.exports = {
       },
       backgroundImage: {
         dish: "url('src/components/assets/rectanlge2.svg')",
+        dish2: "url('src/components/assets/re3.png')",
       },
       screens: {
         xs: "450px",

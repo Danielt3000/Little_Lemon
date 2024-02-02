@@ -23,6 +23,7 @@ function MainPage() {
     window.addEventListener("resize", handleResize);
   }, []);
 
+  console.log(size.width);
   return (
     <>
       <nav>
@@ -71,7 +72,7 @@ function MainPage() {
           <span className="flex items-center justify-center text-xl font-bold text-black mb-5  ">
             Testimonials
           </span>
-          {size.width < 500 && (
+          {size.width < 600 && (
             <div>
               <div className="bg-primary  rounded-lg p-8 max-w-80  mx-auto">
                 <div className="flex mb-5 justify-between">
@@ -88,27 +89,27 @@ function MainPage() {
               </div>
             </div>
           )}
-          {size.width > 500 && (
+          {size.width > 600 && (
             <div className=" flex flex-wrap justify-center gap-2">
               <Section />
             </div>
           )}
         </div>
       </section>
-      <section className="text-black mx-10 text-balance pb-10 ">
-        <div className=" text-center">
+      <section className="text-black mx-10 text-balance pb-10  lg:flex lg:justify-center ">
+        <div className=" text-center w-80 ">
           <h4 className=" font-bold text-3xl mt-10">Little Lemon</h4>
           <h2 className=" font-semibold">Chicago</h2>
-          <p className="font-szie my-10">
+          <p className="font-szie my-10 ">
             Lorem ipsum dolor, sit amet consectetur adipisicing elit. Optio
             voluptas rem ducimus, ab illum excepturi. Quas, molestiae. Velit
             quisquam, illum eius at quod optio, repudiandae, cumque eaque fuga
             animi rem.
           </p>
         </div>
-        <div className="flex justify-center">
-          <img src={food} className=" w-28" />
-          <img src={food2} className="w-28" />
+        <div className="flex justify-center lg:ml-10 lg:mt-10">
+          <img src={food} className=" w-28  sm:w-40" /> 
+          <img src={food2} className="w-28  sm:w-40 relative bottom-8  right-16  " />
         </div>
       </section>
       <footer>
