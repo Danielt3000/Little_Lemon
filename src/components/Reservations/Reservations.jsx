@@ -1,13 +1,14 @@
 import React, { useReducer, useState } from "react";
-import dayjs from "dayjs";
+
 import Nav from "../Nav/Nav";
 import Footer from "../Footer/Footer";
-import { MobileTimePicker } from "@mui/x-date-pickers";
+
 import reservation from "../assets/re.png";
 import reducer from "./cases";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DateCalendar } from "@mui/x-date-pickers/DateCalendar";
+import Dates from "./Dates";
 function Reservations() {
   const initialState = {
     guest: 0,
@@ -57,24 +58,33 @@ function Reservations() {
           </div>
         </div>
       </section>
-      <div className="bg-weekback text-center">
+      <div className="bg-weekback text-center pb-10 ">
         <h5 className="text-primary font-bold text-4xl">DATE</h5>
-      </div>
-      <div className="m-10 text-black">
-        <LocalizationProvider dateAdapter={AdapterDayjs}>
-          <DateCalendar />
-        </LocalizationProvider>
-        <div className="text-white">
-          <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <MobileTimePicker
-              defaultValue={dayjs("2022-04-17T15:30")}
-              className="py-4 px-3 bg-primary  rounded-lg font-bold text-xl text-white"
-            />
-          </LocalizationProvider>
-          <button className="py-4 px-3 bg-primary  rounded-lg font-bold text-xl">
+
+        <div className="md:flex justify-center">
+          <div className="m-10 text-black font-bold">
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+              <DateCalendar className=" rounded  " />
+            </LocalizationProvider>
+          </div>
+          <div className="md:ml-12">
+            <h1 className=" text-4xl  bg-weekback  text-center  font-bold py-5 text-primary ">
+              Time
+            </h1>
+            <div>
+              <Dates />
+            </div>
+          </div>
+        </div>
+        <div className="text-white mt-10">
+          <button className="py-4 px-3 bg-primary  rounded-xl font-bold text-xl">
             OCCASION
           </button>
         </div>
+      </div>
+
+      <div>
+        <button>SUBMIT</button>
       </div>
       <footer>
         <Footer />
