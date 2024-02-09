@@ -9,6 +9,8 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DateCalendar } from "@mui/x-date-pickers/DateCalendar";
 import Dates from "./Dates";
+import dayjs from "dayjs";
+import { DatePicker } from "@mui/x-date-pickers";
 function Reservations() {
   const initialState = {
     guest: 0,
@@ -23,6 +25,8 @@ function Reservations() {
   function decrease() {
     dispatch({ type: "DECREASE" });
   }
+
+  const [daySelected, isDaySelected] = useState(dayjs().date());
 
   return (
     <div>
@@ -62,9 +66,14 @@ function Reservations() {
         <h5 className="text-primary font-bold text-4xl">DATE</h5>
 
         <div className="md:flex justify-center">
-          <div className="m-10 text-black font-bold">
+          <div className=" text-black font-bold">
             <LocalizationProvider dateAdapter={AdapterDayjs}>
-              <DateCalendar className=" rounded  " />
+              <DateCalendar
+                className=" rounded"
+                onChange={(newValue) => {
+                  isDaySelected(newValue.date());
+                }}
+              />
             </LocalizationProvider>
           </div>
           <div className="md:ml-12">
@@ -72,7 +81,7 @@ function Reservations() {
               Time
             </h1>
             <div>
-              <Dates />
+              <Dates days={daySelected} />
             </div>
           </div>
         </div>
