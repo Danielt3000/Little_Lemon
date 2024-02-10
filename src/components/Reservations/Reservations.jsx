@@ -10,14 +10,19 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DateCalendar } from "@mui/x-date-pickers/DateCalendar";
 import Dates from "./Dates";
 import dayjs from "dayjs";
-import { DatePicker } from "@mui/x-date-pickers";
 function Reservations() {
+  const [daySelected, isDaySelected] = useState(dayjs().date());
+
   const initialState = {
+   
     guest: 0,
+    open: false,
+    occasion: "OCCASION",
   };
 
   const [state, dispatch] = useReducer(reducer, initialState);
 
+  console.log(state);
   function increase() {
     dispatch({ type: "INCREASE" });
   }
@@ -26,8 +31,24 @@ function Reservations() {
     dispatch({ type: "DECREASE" });
   }
 
-  const [daySelected, isDaySelected] = useState(dayjs().date());
+  function isOpen() {
+    dispatch({ type: "OPEN" });
+  }
 
+  function occasion() {
+    dispatch({ type: "ESCPECIAL" });
+    isOpen();
+  }
+  function occasion2() {
+    dispatch({ type: "VALENTIN" });
+    isOpen();
+  }
+  function occasion3() {
+    dispatch({ type: "NORMAL" });
+    isOpen();
+  }
+
+  console.log(daySelected);
   return (
     <div>
       <nav>
@@ -85,10 +106,39 @@ function Reservations() {
             </div>
           </div>
         </div>
-        <div className="text-white mt-10">
-          <button className="py-4 px-3 bg-primary  rounded-xl font-bold text-xl">
-            OCCASION
-          </button>
+        <div className="text-white mt-10 ">
+          {!state.open && (
+            <button
+              className="py-4 px-3 bg-primary  rounded-xl font-bold text-xl"
+              onClick={isOpen}
+            >
+              {state.occasion}
+            </button>
+          )}
+          {state.open && (
+            <div className="xs:flex xs:justify-center ">
+              <div className="  flex justify-evenly   xs:w-1/2  ">
+                <button
+                  onClick={occasion}
+                  className=" py-2 px-1 xs:py-3 xs:px-2 md:py-4 md:px-3 bg-primary  rounded-xl font-bold text-sm "
+                >
+                  Especial Event
+                </button>
+                <button
+                  onClick={occasion2}
+                  className="  py-2 px-1 xs:py-3 xs:px-2 md:py-4 md:px-3 bg-primary  rounded-xl font-bold text-sm "
+                >
+                  Valentin Day
+                </button>
+                <button
+                  onClick={occasion3}
+                  className=" py-2 px-1 xs:py-3 xs:px-2 md:py-4 md:px-3 bg-primary  rounded-xl font-bold text-sm  "
+                >
+                  Normal Date
+                </button>
+              </div>
+            </div>
+          )}
         </div>
       </div>
 

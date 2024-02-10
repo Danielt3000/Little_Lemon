@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 function Dates({ days }) {
   const time = [
@@ -35,11 +35,21 @@ function Dates({ days }) {
     ["9:00 PM", "8:00 PM", "5:00 PM", "12:00 PM"],
   ];
 
+  const [selectedTime, setSelectedTime] = useState(null);
+
+  const handleRadioChange = (timeValue) => {
+    setSelectedTime(timeValue);
+  };
+
   return (
-    <form className=" grid grid-cols-2  place-items-center gap-3 ">
+    <form className="grid grid-cols-2 place-items-center gap-3">
       {time[days].map((timeValue, index) => (
-        <div key={index} className="bg-primary w-32 rounded-md text-white ">
-          <input type="radio" value={timeValue} checked={true} />
+        <div
+          onClick={() => handleRadioChange(timeValue)}
+          key={index}
+          className="bg-primary text-xl w-32 rounded-md text-white font-bold"
+        >
+          <input type="radio" checked={selectedTime === timeValue} />
           <h1>{timeValue}</h1>
         </div>
       ))}

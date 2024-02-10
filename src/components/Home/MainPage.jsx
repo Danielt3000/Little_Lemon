@@ -96,20 +96,24 @@ function MainPage() {
           )}
         </div>
       </section>
-      <section className="text-black mx-10 text-balance pb-10  lg:flex lg:justify-center ">
-        <div className=" text-center w-80 ">
+      <section className="text-black mx-10 text-balance pb-10  md:flex md:justify-center ">
+        <div className=" text-center md:w-80 ">
           <h4 className=" font-bold text-3xl mt-10">Little Lemon</h4>
           <h2 className=" font-semibold">Chicago</h2>
-          <p className="font-szie my-10 ">
+          <p className=" my-10 ">
             Lorem ipsum dolor, sit amet consectetur adipisicing elit. Optio
             voluptas rem ducimus, ab illum excepturi. Quas, molestiae. Velit
             quisquam, illum eius at quod optio, repudiandae, cumque eaque fuga
             animi rem.
           </p>
         </div>
-        <div className="flex justify-center lg:ml-10 lg:mt-10">
-          <img src={food} className=" w-28  sm:w-40" /> 
-          <img src={food2} className="w-28  sm:w-40 relative bottom-8  right-16  " />
+        <div className="flex max-sm:justify-evenly
+         justify-center md:ml-10 md:mt-10">
+          <img src={food} className=" w-28  sm:w-40" />
+          <img
+            src={food2}
+            className="w-28  sm:w-40 sm:relative bottom-8  right-16  "
+          />
         </div>
       </section>
       <footer>
