@@ -30,6 +30,19 @@ const reducer = (state, action) => {
       return { ...state, day: action.payload };
     case "TIME":
       return { ...state, time: action.payload };
+    case "CLOSE":
+      return { ...state, isActive: !state.isActive };
+    case "MODULE":
+      if (
+        state.guest === 0 ||
+        state.occasion === "OCCASION" ||
+        state.time === ""
+      ) {
+        return { ...state };
+      } else {
+        return { ...state, isActive: !state.isActive };
+      }
+
     default:
       return state;
   }

@@ -1,15 +1,12 @@
 import React from "react";
 import { useState } from "react";
-function Submit() {
-  const [isConfirm, setIsConfirm] = useState(false);
-
-  const handleConfirm = () => {
-    setIsConfirm((prev) => !prev);
-  };
-
+function Submit({ handleState }) {
   return (
     <div className="fixed top-1/3  bg-primary rounded-lg py-4 px-2 w-1/2">
-      <button className=" absolute corner bg-weekback text-black font-bold text-xl px-3 py-1  rounded-full">
+      <button
+        onClick={handleState}
+        className=" absolute corner bg-weekback text-black font-bold text-xl px-3 py-1  rounded-full"
+      >
         X
       </button>
       <form action="/" className="  ">
@@ -44,7 +41,6 @@ function Submit() {
           <button
             type="submit"
             className=" mt-5 bg-weekback text-black font-bold py-2 px-1 rounded-md "
-            onClick={handleConfirm}
           >
             Confirm Reservation
           </button>
@@ -56,7 +52,7 @@ function Submit() {
           "Your Reservation is for <span className=" underline">3</span> people
           at <span className=" underline"> 1:00 PM</span> in the{" "}
           <span className=" underline">19</span> of
-          <span className=" underline">  November</span>"
+          <span className=" underline"> November</span>"
         </h1>
       </div>
     </div>

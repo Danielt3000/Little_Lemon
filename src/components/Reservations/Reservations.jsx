@@ -20,6 +20,7 @@ function Reservations() {
     open: false,
     occasion: "OCCASION",
     time: "",
+    isActive: false,
   };
 
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -58,24 +59,15 @@ function Reservations() {
   function time(childValue) {
     dispatch({ type: "TIME", payload: childValue });
   }
-
-  // active class for the  form
-
-  const [isActive, setIsActive] = useState(true);
-
-  const haveAllTheInformation = () => {
-    setIsActive((preValue) => !preValue);
-  };
-
-  // if (
-  //   state.guest === 0 ||
-  //   state.occasion === "OCCASION" ||
-  //   state.time === ""
-  // ) {
-  //   console.log("You need to confirm this two elemnts before preducing ");
-  // } else {
-
-  // }
+  function restart() {
+    dispatch({ type: "RESTART" });
+  }
+  function closeModule() {
+    dispatch({ type: "CLOSE" });
+  }
+  function modulePop() {
+    dispatch({ type: "MODULE" });
+  }
 
   return (
     <div>
@@ -172,17 +164,17 @@ function Reservations() {
 
       <div className="flex justify-center">
         <button
-          onClick={haveAllTheInformation}
+          onClick={modulePop}
           className=" font-bold py-4 px-10 bg-primary shadow-lg my-10 rounded-lg"
         >
           SUBMIT
         </button>
         <div
           className={
-            isActive ? " flex flex-row justify-center overlay " : "hidden"
+            state.isActive ? " flex flex-row justify-center overlay " : "hidden"
           }
         >
-          <Submit />
+          <Submit handleState={closeModule} restart={restart} />
         </div>
       </div>
       <footer>
