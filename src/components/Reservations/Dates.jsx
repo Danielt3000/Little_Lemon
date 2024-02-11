@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-
-function Dates({ days }) {
+import reducer from "./cases";
+function Dates({ days, childValue }) {
   const time = [
     ["12:00 PM"],
     ["6:00 AM", "11:00 AM", "8:00 AM", "2:00 PM"],
@@ -39,6 +39,7 @@ function Dates({ days }) {
 
   const handleRadioChange = (timeValue) => {
     setSelectedTime(timeValue);
+    childValue(timeValue);
   };
 
   return (

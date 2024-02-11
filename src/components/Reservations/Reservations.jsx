@@ -10,14 +10,16 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DateCalendar } from "@mui/x-date-pickers/DateCalendar";
 import Dates from "./Dates";
 import dayjs from "dayjs";
+import Submit from "./Submit";
 function Reservations() {
   const [daySelected, isDaySelected] = useState(dayjs().date());
 
   const initialState = {
-   
+    day: daySelected,
     guest: 0,
     open: false,
     occasion: "OCCASION",
+    time: "",
   };
 
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -48,7 +50,33 @@ function Reservations() {
     isOpen();
   }
 
-  console.log(daySelected);
+  function dayDate(newValue) {
+    isDaySelected(newValue.date());
+    dispatch({ type: "DAY", payload: newValue.date() });
+  }
+
+  function time(childValue) {
+    dispatch({ type: "TIME", payload: childValue });
+  }
+
+  // active class for the  form
+
+  const [isActive, setIsActive] = useState(true);
+
+  const haveAllTheInformation = () => {
+    setIsActive((preValue) => !preValue);
+  };
+
+  // if (
+  //   state.guest === 0 ||
+  //   state.occasion === "OCCASION" ||
+  //   state.time === ""
+  // ) {
+  //   console.log("You need to confirm this two elemnts before preducing ");
+  // } else {
+
+  // }
+
   return (
     <div>
       <nav>
@@ -92,7 +120,7 @@ function Reservations() {
               <DateCalendar
                 className=" rounded"
                 onChange={(newValue) => {
-                  isDaySelected(newValue.date());
+                  dayDate(newValue);
                 }}
               />
             </LocalizationProvider>
@@ -102,7 +130,7 @@ function Reservations() {
               Time
             </h1>
             <div>
-              <Dates days={daySelected} />
+              <Dates days={daySelected} childValue={time} />
             </div>
           </div>
         </div>
@@ -120,19 +148,19 @@ function Reservations() {
               <div className="  flex justify-evenly   xs:w-1/2  ">
                 <button
                   onClick={occasion}
-                  className=" py-2 px-1 xs:py-3 xs:px-2 md:py-4 md:px-3 bg-primary  rounded-xl font-bold text-sm "
+                  className=" py-2 px-1 xs:py-3 xs:px-2 md:py-4 md:px-3 bg-primary  rounded-xl font-bold text-sm md:text-xl "
                 >
                   Especial Event
                 </button>
                 <button
                   onClick={occasion2}
-                  className="  py-2 px-1 xs:py-3 xs:px-2 md:py-4 md:px-3 bg-primary  rounded-xl font-bold text-sm "
+                  className="  py-2 px-1 xs:py-3 xs:px-2 md:py-4 md:px-3 bg-primary  rounded-xl font-bold text-sm md:text-xl "
                 >
                   Valentin Day
                 </button>
                 <button
                   onClick={occasion3}
-                  className=" py-2 px-1 xs:py-3 xs:px-2 md:py-4 md:px-3 bg-primary  rounded-xl font-bold text-sm  "
+                  className=" py-2 px-1 xs:py-3 xs:px-2 md:py-4 md:px-3 bg-primary  rounded-xl font-bold text-sm md:text-xl  "
                 >
                   Normal Date
                 </button>
@@ -142,8 +170,20 @@ function Reservations() {
         </div>
       </div>
 
-      <div>
-        <button>SUBMIT</button>
+      <div className="flex justify-center">
+        <button
+          onClick={haveAllTheInformation}
+          className=" font-bold py-4 px-10 bg-primary shadow-lg my-10 rounded-lg"
+        >
+          SUBMIT
+        </button>
+        <div
+          className={
+            isActive ? " flex flex-row justify-center overlay " : "hidden"
+          }
+        >
+          <Submit />
+        </div>
       </div>
       <footer>
         <Footer />
